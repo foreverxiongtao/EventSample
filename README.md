@@ -45,3 +45,17 @@ public boolean dispatchTouchEvent(MotionEvent ev),我们需要注意的是这个
 
 1>如果当前的返回值为true,标示事件将会被拦截，那么被拦截的事件将会交由当前的view的onTouchEvent进行处理
 
+2>如果当前的返回值为false,那么当前的事件就不会进行拦截，那么view事件能够得以传递给子view,并且由子view的dispatchTouchEvent（）方法进行处理。
+
+3>如果当前的view的返回值为super.interceptTouchEvent（）,那么当前的事件也是不会进行拦截的，并且传递给子view的dispatchTouchEvent()进行处理。
+
+
+#3-------事件响应:
+对应的方法为public boolean onTouchEvent(MotionEvent ev)
+
+1>如果当前的返回值是true,那么表明当前的事件已经被消费掉，那么事件就不会冒泡给父view,
+
+2>如果当前的返回值是false,那么事件将会在onTouchEvent处理后在冒泡回传给父view,同时交由父view的onTouchEvent进行处理。
+
+3>如果当前的的返回值是super.onTouchEvent(MotionEvent ev)，处理的逻辑和false其实是一样的。
+那么我们可以发现，dispatchTouchEvent方法的返回值无论是true,还是false,事件都会被消费掉，无法进行分发了，只有当返回值为super.dispatchTouchEvent()才有分发的资格，而且interceptTouchEvent的返回值不为true，不拦截的情况下，子view才会能捕获到事件，
