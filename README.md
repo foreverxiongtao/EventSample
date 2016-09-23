@@ -28,7 +28,7 @@ public boolean dispatchTouchEvent(MotionEvent ev),我们需要注意的是这个
 
 当有监听到事件时，首先由Activity的捕获到，进入事件分发处理流程。无论是Activity还是View，如前文所说，事件分发自身也具有消费能力，
 
-1.如果返回值是true，表明当前的事件已经在在本层中不会再分发，而且事件在分发过程中已经被消耗掉，到这里事件的处理已经结束，
+1.如果返回值是true，表明当前的事件已经在在本层中不会再分发，事件会分发给当前 View 并由 dispatchTouchEvent 而且事件在分发过程中已经被消耗掉， 方法进行消费到这里事件的处理已经结束，
 
 2.返回值为false,这里我们要分为两种情况：
 
@@ -58,4 +58,5 @@ public boolean dispatchTouchEvent(MotionEvent ev),我们需要注意的是这个
 2>如果当前的返回值是false,那么事件将会在onTouchEvent处理后在冒泡回传给父view,同时交由父view的onTouchEvent进行处理。
 
 3>如果当前的的返回值是super.onTouchEvent(MotionEvent ev)，处理的逻辑和false其实是一样的。
+
 那么我们可以发现，dispatchTouchEvent方法的返回值无论是true,还是false,事件都会被消费掉，无法进行分发了，只有当返回值为super.dispatchTouchEvent()才有分发的资格，而且interceptTouchEvent的返回值不为true，不拦截的情况下，子view才会能捕获到事件，
