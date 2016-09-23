@@ -46,6 +46,6 @@ public class CustomerChild extends TextView {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.e(Tag, "onTouchEvent");
-        return super.onTouchEvent(event);
+        return true;
     }
 }

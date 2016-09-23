@@ -45,7 +45,7 @@ public class CustomerParent extends LinearLayout {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         Log.e(Tag, "dispatchTouchEvent");
-        return super.dispatchTouchEvent(ev);
+        return true;
     }
 
     /****
@@ -57,7 +57,7 @@ public class CustomerParent extends LinearLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         Log.e(Tag, "onInterceptTouchEvent");
-        return super.onInterceptTouchEvent(ev);
+        return false;
     }
 
 
